@@ -3,7 +3,9 @@
 This is the implementation for the paper [Server-Driven Video Streaming for Deep Learning Inference](https://kuntaidu.github.io/assets/doc/DDS.pdf).
 
 **Project has been updated to support pytorch based YOLO models to detect objects.
-You can find CeyMo pre-trained yolo model file with this project.**
+You can find CeyMo pre-trained yolo model file with this project. We used latest YOLO v8 for generate the model.**
+
+Find more details about YOLOv8 (https://github.com/ultralytics/ultralytics)
 
 ## 1. Related resources
 
