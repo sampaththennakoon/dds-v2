@@ -83,6 +83,8 @@ class Client:
 
         final_results.write(video_name)
 
+        print('[total_size, 0]')
+        print(total_size)
         return final_results, [total_size, 0]
 
     def analyze_video_emulate(self, video_name, high_images_path,
@@ -181,6 +183,9 @@ class Client:
 
         final_results.fill_gaps(number_of_frames)
         final_results.write(f"{video_name}")
+
+        print('total_size')
+        print(total_size)
         return final_results, total_size
 
     def init_server(self, nframes):

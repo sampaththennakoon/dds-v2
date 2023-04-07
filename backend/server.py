@@ -63,7 +63,9 @@ class Server:
             else:
                 image_path = os.path.join(images_direc, fname)
                 image = cv.imread(image_path)
-            # image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+
+            # THIS NEEDS TO BE ENABLED FOR TENSORFLOW MODELS
+            #image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
             detection_results, rpn_results = (
                 self.detector.infer(image))

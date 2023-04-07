@@ -10,8 +10,6 @@ video_name = sys.argv[1]
 results_direc = sys.argv[2]
 stats_file = sys.argv[3]
 gt_mode = 'gt'
-# video_name = results_direc[11:]
-# print(video_name)
 dirs = os.listdir(results_direc)
 from dds_utils import *
 

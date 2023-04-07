@@ -13,12 +13,6 @@ class DetectorV1:
         "roadside-objects": [10, 11, 13, 14]
     }
 
-    dds_v2_classes = {
-        "vehicle": [0, 3, 6, 7, 8, 1, 2, 4, 10, 5],
-        "persons": [11, 12],
-        "roadside-objects": [13, 14]
-    }
-
     def __init__(self, model_path='frozen_inference_graph.pb'):
         self.logger = logging.getLogger("object_detector v1")
         handler = logging.NullHandler()
@@ -103,13 +97,13 @@ class DetectorV1:
             output_dict['detection_scores'] = (
                 output_dict['detection_scores'][0])
 
-            print('---------------------------------')
-            print(output_dict['num_detections'])
-            print(output_dict['detection_classes'])
-            print(output_dict['detection_boxes'].shape)
-            print(output_dict['detection_boxes'])
-            print(output_dict['detection_scores'])
-            print('---------------------------------')
+            # print('---------------------------------')
+            # print(output_dict['num_detections'])
+            # print(output_dict['detection_classes'])
+            # print(output_dict['detection_boxes'].shape)
+            # print(output_dict['detection_boxes'])
+            # print(output_dict['detection_scores'])
+            # print('---------------------------------')
 
         return output_dict
 

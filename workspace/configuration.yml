@@ -12,7 +12,7 @@ data_dir: ../dataset
 # You could specify multiple values for each parameter through yaml list. The code will automatically sweep all parameters for you
 default:
   # overwrite existing results or not
-  overwrite: False
+  overwrite: True
   # the video name you want to run. Can be a list or a single string
   video_name: trafficcam_1
   # several configurations, a lot of them are ... just issues left over from history.
@@ -42,7 +42,7 @@ default:
   objfilter_iou: 1.1
   size_obj: 1.1
   # Turn on debug_mode to show what DDS sends in second iteration.
-  debug_mode: False
+  debug_mode: True
   # The path to the ground truth. Will be automatically set in entrance.py
   ground_truth: False
   mode: emulation

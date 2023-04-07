@@ -2,17 +2,13 @@ import os
 import logging
 import numpy as np
 from ultralytics import YOLO
+# import time
+# import torch
 
 os.environ['TF_CPP_MIN_VLOG_LEVEL'] = '3'
 
 
 class DetectorV2:
-
-    # dds_v2_classes = {
-    #     "vehicle": [3, 6, 7, 8, 1, 2, 4, 10],
-    #     "persons": [0, 11, 12, 13],
-    #     "roadside-objects": [14]
-    # }
 
     # dds_v2_classes = {
     #     "vehicle": [3, 6, 7, 8],
@@ -21,10 +17,11 @@ class DetectorV2:
     # }
 
     dds_v2_classes = {
-        "vehicle": [0, 3, 6, 7, 8, 1, 2, 4, 10, 5],
+        "vehicle": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         "persons": [11, 12],
         "roadside-objects": [13, 14]
     }
+
     def __init__(self, model_path='best.pt'):
         self.logger = logging.getLogger("object_detector v2")
         handler = logging.NullHandler()
@@ -42,6 +39,10 @@ class DetectorV2:
 
         # YOLOv8 Implementation
         result = self.model(image)[0]
+
+        # result = self.model.predict(source=image, show=False, save=True, save_txt=True, save_conf=True)[0]
+        # time.sleep(1)
+
         len_results = len(result.boxes)
         boxes = result.boxes.xyxy
         list_of_boxes = [t.cpu().numpy() for t in boxes]
@@ -63,8 +64,9 @@ class DetectorV2:
                 yMin = list_of_boxes[i][1]
                 xMax = list_of_boxes[i][2]
                 yMax = list_of_boxes[i][3]
-                #boxes_array.append(list_of_boxes[i].tolist())
-                boxes_array.append([yMin/384, xMin/640, yMax/384, xMax/640])
+                # boxes_array.append(list_of_boxes[i].tolist())
+                boxes_array.append(
+                    [yMin / image.shape[0], xMin / image.shape[1], yMax / image.shape[0], xMax / image.shape[1]])
             else:
                 boxes_array.append([float(0), float(0), float(0), float(0)])
 
@@ -85,16 +87,8 @@ class DetectorV2:
         output_dict['detection_classes'] = classes
 
         output_dict['detection_boxes'] = detection_boxes_array
-        # print(output_dict['detection_boxes'])
 
         output_dict['detection_scores'] = confidence_array
-
-        # print('---------------------------------')
-        # print(output_dict['num_detections'])
-        # print(output_dict['detection_classes'])
-        # print(output_dict['detection_boxes'])
-        # print(output_dict['detection_scores'])
-        # print('---------------------------------')
 
         return output_dict
 
@@ -102,8 +96,7 @@ class DetectorV2:
         imgae_crops = image_np
 
         # this output_dict contains both final layer results and RPN results
-        output_dict = self.run_inference_for_single_image(
-            imgae_crops)
+        output_dict = self.run_inference_for_single_image(imgae_crops)
 
         # The results array will have (class, (xmin, xmax, ymin, ymax)) tuples
         results = []

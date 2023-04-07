@@ -49,7 +49,7 @@ def execute_single(single_instance):
         else:
             single_instance['video_name'] = f'results/{result_file_name}'
             single_instance['high_images_path'] = f'{original_images_dir}'
-            single_instance['outfile'] = 'stats'
+            single_instance['outfile'] = 'stats.csv'
 
             subprocess.run(['python', '../play_video.py', 
                             yaml.dump(single_instance)])
@@ -69,7 +69,7 @@ def execute_single(single_instance):
         else:
             single_instance['video_name'] = f'results/{result_file_name}'
             single_instance['high_images_path'] = f'{original_images_dir}'
-            single_instance['outfile'] = 'stats'
+            single_instance['outfile'] = 'stats.csv'
             single_instance['ground_truth'] = f'results/{video_name}_gt'
 
             subprocess.run(['python', '../play_video.py',
@@ -99,7 +99,7 @@ def execute_single(single_instance):
         else:
             single_instance['video_name'] = f'results/{result_file_name}'
             single_instance['high_images_path'] = f'{original_images_dir}'
-            single_instance['outfile'] = 'stats'
+            single_instance['outfile'] = 'stats.csv'
             single_instance['ground_truth'] = f'results/{video_name}_gt'
             single_instance['low_results_path'] = f'results/{video_name}_mpeg_{low_res}_{low_qp}'
 
