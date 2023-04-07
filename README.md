@@ -45,6 +45,9 @@ Under ```DDSrepo/workspace```, run
 
 you should see something like
 
+Project has been updated to support pytorch based YOLO models to detect objects.
+You can find CeyMo pre-trained yolo model file with this project.
+
 ```
 trafficcam_1_dds_0.8_0.8_36_26_0.0_twosides_batch_15_0.5_0.3_0.01 1055KB 0.857
 trafficcam_1_mpeg_0.8_26 3314KB 0.889
@@ -85,3 +88,13 @@ We search some keywords through youtube in the anonymous mode of Chrome. The top
 |--------|--------------| ---------- | --------------------------------------------- | -------------------- |
 |        |              |            |                                               |                      |
 | CeyMo  | Google Drive | dashcam    | <https://drive.google.com/drive/folders/1cjlMDGeM4twNo33959_urmiL3gKx36jC> |                      |
+
+## 7. Additional Notes
+
+### 7.1 Image Preparation
+
+1. To generate images from a video we use ffmpeg multimedia framework. (For More Details about https://ffmpeg.org/about.html)
+2. To generate images use following command. (**$ ffmpeg -i raw_footage_1_colombo.mp4 -r 1 -f images %10d.jpg**)
+3. To reduce the size larger images, we use imagemagick software. (For More Details about https://imagemagick.org/index.php)
+4. To resize the images in a folder use following command. (**$ for image in *.jpg ;  do convert -resize 640x360 "$image" "resized/${image%.*}" ; done**)
+5. To convert jpg file format to png we again use imagemagick software. Use following command to convert jpg images to png. (**$ for image in *.jpg ;  do convert "$image" "${image%.*}.png" ; done**) 
