@@ -5,7 +5,8 @@ import cv2 as cv
 from dds_utils import (Results, Region, calc_iou, merge_images,
                        extract_images_from_video, merge_boxes_in_results,
                        compute_area_of_frame, calc_area, read_results_dict)
-from .object_detector import Detector
+# from .object_detector_v1 import DetectorV1
+from .object_detector_v2 import DetectorV2
 
 
 class Server:
@@ -20,7 +21,8 @@ class Server:
         handler = logging.NullHandler()
         self.logger.addHandler(handler)
 
-        self.detector = Detector()
+        # self.detector = DetectorV1()
+        self.detector = DetectorV2()
 
         self.curr_fid = 0
         self.nframes = nframes
@@ -61,7 +63,7 @@ class Server:
             else:
                 image_path = os.path.join(images_direc, fname)
                 image = cv.imread(image_path)
-            image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+            # image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
             detection_results, rpn_results = (
                 self.detector.infer(image))

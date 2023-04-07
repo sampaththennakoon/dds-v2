@@ -81,6 +81,14 @@ def main(args):
     if args.ground_truth:
         ground_truth_dict = read_results_dict(args.ground_truth)
         logger.info("Reading ground truth results complete")
+
+        print('---------------------------------')
+        print(number_of_frames - 1)
+        print(results.regions_dict)
+        print(ground_truth_dict)
+        print(args.low_threshold)
+        print('---------------------------------')
+
         tp, fp, fn, _, _, _, f1 = evaluate(
             number_of_frames - 1, results.regions_dict, ground_truth_dict,
             args.low_threshold, 0.5, 0.4, 0.4)

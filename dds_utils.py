@@ -744,8 +744,16 @@ def filter_results(bboxes, gt_flag, gt_confid_thresh, mpeg_confid_thresh,
 
     result = []
     for b in bboxes:
+        #print('check - filter_results - bboxes')
         b = b.x, b.y, b.w, b.h, b.label, b.conf
         (x, y, w, h, label, confid) = b
+        print(confid)
+        print(w*h)
+        print(label)
+        print('--------------')
+        print(confid_thresh)
+        print(max_area_thresh)
+
         if (confid >= confid_thresh and w*h <= max_area_thresh and
                 label in relevant_classes):
             result.append(b)
@@ -759,6 +767,13 @@ def iou(b1, b2):
     y3 = max(y1, y2)
     x4 = min(x1+w1, x2+w2)
     y4 = min(y1+h1, y2+h2)
+
+    print('x3, y3, x4, y4')
+    print(x3)
+    print(y3)
+    print(x4)
+    print(y4)
+
     if x3 > x4 or y3 > y4:
         return 0
     else:
@@ -772,6 +787,10 @@ def evaluate(max_fid, map_dd, map_gt, gt_confid_thresh, mpeg_confid_thresh,
     fp_list = []
     fn_list = []
     count_list = []
+    # print(max_fid)
+    # print(mpeg_confid_thresh)
+    # print(max_area_thresh_gt)
+    # print(max_area_thresh_mpeg)
     for fid in range(max_fid+1):
         bboxes_dd = map_dd[fid]
         bboxes_gt = map_gt[fid]
@@ -789,9 +808,15 @@ def evaluate(max_fid, map_dd, map_gt, gt_confid_thresh, mpeg_confid_thresh,
         fp = 0
         fn = 0
         count = 0
+        # print(bboxes_dd)
         for b_dd in bboxes_dd:
+            # print('found a')
             found = False
             for b_gt in bboxes_gt:
+                print('A')
+                print(b_dd)
+                print(b_gt)
+                print(iou(b_dd, b_gt))
                 if iou(b_dd, b_gt) >= iou_thresh:
                     found = True
                     break
@@ -800,8 +825,13 @@ def evaluate(max_fid, map_dd, map_gt, gt_confid_thresh, mpeg_confid_thresh,
             else:
                 fp += 1
         for b_gt in bboxes_gt:
+            # print('found b')
             found = False
             for b_dd in bboxes_dd:
+                print('B')
+                #print(b_dd)
+                #print(b_gt)
+                print(iou(b_dd, b_gt))
                 if iou(b_dd, b_gt) >= iou_thresh:
                     found = True
                     break
@@ -816,6 +846,9 @@ def evaluate(max_fid, map_dd, map_gt, gt_confid_thresh, mpeg_confid_thresh,
     tp = sum(tp_list)
     fp = sum(fp_list)
     fn = sum(fn_list)
+    # print(tp)
+    # print(fp)
+    # print(fn)
     count = sum(count_list)
     return (tp, fp, fn, count,
             round(tp/(tp+fp), 3),

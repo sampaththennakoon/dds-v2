@@ -1,10 +1,10 @@
-name: dds
+name: dds-v2
 channels:
   - anaconda
   - defaults
 dependencies:
-  - python=3.7.7
-  - tensorflow-gpu=1.14
+  - python=3.9.13
+  - tensorflow
   - flask
   - munch
   - networkx
@@ -13,5 +13,6 @@ dependencies:
   - pip
   - pip:
     - opencv-contrib-python
+    - ultralytics
  
 
