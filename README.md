@@ -2,6 +2,9 @@
 
 This is the implementation for the paper [Server-Driven Video Streaming for Deep Learning Inference](https://kuntaidu.github.io/assets/doc/DDS.pdf).
 
+**Project has been updated to support pytorch based YOLO models to detect objects.
+You can find CeyMo pre-trained yolo model file with this project.**
+
 ## 1. Related resources
 
 Please check [Kuntai Du's home page](https://kuntaidu.github.io/aboutme.html) for more DDS-related resources.
@@ -44,9 +47,6 @@ Under ```DDSrepo/workspace```, run
 ```python examine.py trafficcam_1 results stats.csv```
 
 you should see something like
-
-Project has been updated to support pytorch based YOLO models to detect objects.
-You can find CeyMo pre-trained yolo model file with this project.
 
 ```
 trafficcam_1_dds_0.8_0.8_36_26_0.0_twosides_batch_15_0.5_0.3_0.01 1055KB 0.857
