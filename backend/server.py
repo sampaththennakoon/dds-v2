@@ -5,7 +5,7 @@ import cv2 as cv
 from dds_utils import (Results, Region, calc_iou, merge_images,
                        extract_images_from_video, merge_boxes_in_results,
                        compute_area_of_frame, calc_area, read_results_dict)
-# from .object_detector_v1 import DetectorV1
+from .object_detector_v1 import DetectorV1
 from .object_detector_v2 import DetectorV2
 
 
@@ -21,8 +21,10 @@ class Server:
         handler = logging.NullHandler()
         self.logger.addHandler(handler)
 
-        # self.detector = DetectorV1()
-        self.detector = DetectorV2()
+        if self.config.model_type == "YOLOV8":
+            self.detector = DetectorV2()
+        else:
+            self.detector = DetectorV1()
 
         self.curr_fid = 0
         self.nframes = nframes
@@ -150,7 +152,7 @@ class Server:
         # Divide RPN results into detections and RPN regions
         for single_result in batch_results.regions:
             if (single_result.conf > self.config.prune_score and
-                    single_result.label == "vehicle"):
+                    single_result.label == "road-markings"):
                 detections.add_single_result(
                     single_result, self.config.intersection_threshold)
             else:

@@ -8,10 +8,12 @@ os.environ['TF_CPP_MIN_VLOG_LEVEL'] = '3'
 class DetectorV1:
 
     dds_v1_classes = {
-        "vehicle": [3, 6, 7, 8],
-        "persons": [1, 2, 4],
-        "roadside-objects": [10, 11, 13, 14]
+        "road-markings": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        "persons": [11, 12],
+        "roadside-objects": [13, 14]
     }
+
+    rpn_threshold = 0.5
 
     def __init__(self, model_path='frozen_inference_graph.pb'):
         self.logger = logging.getLogger("object_detector v1")
@@ -119,10 +121,8 @@ class DetectorV1:
         for i in range(len(output_dict['detection_boxes'])):
             object_class = output_dict['detection_classes'][i]
             relevant_class = False
-            #for k in DetectorV1.dds_v1_classes.keys():
-            for k in DetectorV2.dds_v2_classes.keys():
-                # if object_class in DetectorV1.dds_v1_classes[k]:
-                if object_class in DetectorV2.dds_v2_classes[k]:
+            for k in DetectorV1.dds_v1_classes.keys():
+                if object_class in DetectorV1.dds_v1_classes[k]:
                     object_class = k
                     relevant_class = True
                     break
@@ -137,14 +137,14 @@ class DetectorV1:
         # Get RPN regions along with classification results
         # rpn results array will have (class, (xmin, xmax, ymin, ymax)) typles
         results_rpn = []
-        # for idx_region, region in enumerate(output_dict['RPN_box_normalized']):
-        #     x = region[1]
-        #     y = region[0]
-        #     w = region[3] - region[1]
-        #     h = region[2] - region[0]
-        #     conf = output_dict['RPN_score'][idx_region]
-        #     if conf < Detector.rpn_threshold or w * h == 0.0 or w * h > 0.04:
-        #         continue
-        #     results_rpn.append(("object", conf, (x, y, w, h)))
+        for idx_region, region in enumerate(output_dict['RPN_box_normalized']):
+            x = region[1]
+            y = region[0]
+            w = region[3] - region[1]
+            h = region[2] - region[0]
+            conf = output_dict['RPN_score'][idx_region]
+            if conf < DetectorV1.rpn_threshold or w * h == 0.0 or w * h > 0.04:
+                continue
+            results_rpn.append(("object", conf, (x, y, w, h)))
 
         return results, results_rpn

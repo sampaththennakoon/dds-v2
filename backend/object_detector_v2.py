@@ -2,22 +2,14 @@ import os
 import logging
 import numpy as np
 from ultralytics import YOLO
-# import time
-# import torch
 
 os.environ['TF_CPP_MIN_VLOG_LEVEL'] = '3'
 
 
 class DetectorV2:
 
-    # dds_v2_classes = {
-    #     "vehicle": [3, 6, 7, 8],
-    #     "persons": [1, 2, 4],
-    #     "roadside-objects": [10, 11, 13, 14]
-    # }
-
     dds_v2_classes = {
-        "vehicle": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        "road-markings": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         "persons": [11, 12],
         "roadside-objects": [13, 14]
     }

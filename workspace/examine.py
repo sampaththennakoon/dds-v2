@@ -2,7 +2,6 @@
 # python examine.py video_name results_fold stats_file gt
 import sys
 import os
-import yaml
 
 sys.path.append('../')
 
@@ -20,7 +19,7 @@ max_area_thresh_gt_list = [0.04]
 max_area_thresh_mpeg_list = max_area_thresh_gt_list
 
 iou_thresh = 0.3
-relevant_classes = 'vehicle'
+relevant_classes = 'road-markings'
 
 def parse_stats(stats_path):
 	fname_to_size = {}

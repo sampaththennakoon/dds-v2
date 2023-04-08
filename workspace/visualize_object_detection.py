@@ -1,8 +1,5 @@
 
-import argparse
-
 from PIL import Image, ImageDraw
-from torchvision import io
 import sys
 from pathlib import Path
 import yaml
@@ -11,7 +8,7 @@ import logging
 sys.path.append('../')
 from dds_utils import read_results_dict
 
-relevant_classes = 'vehicle'
+relevant_classes = 'road-markings'
 confidence_threshold = 0.5
 max_area_threshold = 0.04
 iou_threshold = 0.8
