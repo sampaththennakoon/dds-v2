@@ -8,9 +8,9 @@ os.environ['TF_CPP_MIN_VLOG_LEVEL'] = '3'
 class DetectorV1:
 
     dds_v1_classes = {
-        "road-markings": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        "persons": [11, 12],
-        "roadside-objects": [13, 14]
+        "road-markings": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "persons": [12, 13],
+        "roadside-objects": [14, 15]
     }
 
     rpn_threshold = 0.5
