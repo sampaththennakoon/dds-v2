@@ -3,9 +3,11 @@
 This is the implementation for the paper [Server-Driven Video Streaming for Deep Learning Inference](https://kuntaidu.github.io/assets/doc/DDS.pdf).
 
 **Project has been updated to support pytorch based YOLO models to detect objects.
-You can find CeyMo pre-trained yolo model file with this project. We used latest YOLO v8 for generate the model.**
+You can find CAVIAR data set pre-trained yolo model file with this project. We used latest YOLO v8 for generate the model.**
 
 Find more details about YOLOv8 (https://github.com/ultralytics/ultralytics)
+
+CAVIAR DATA SET (https://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1)
 
 ## 1. Related resources
 
@@ -86,10 +88,10 @@ Inside workspace folder, we use a configuration file ```configuration.yml``` to 
 
 We search some keywords through youtube in the anonymous mode of Chrome. The top-ranked search results, corresponding URLS are listed below. We filter out some of these videos.
 
-| Keyword | Source       | Type       | URL                                           | Why we filter it out |
-|--------|--------------| ---------- | --------------------------------------------- | -------------------- |
-|        |              |            |                                               |                      |
-| CeyMo  | Google Drive | dashcam    | <https://drive.google.com/drive/folders/1cjlMDGeM4twNo33959_urmiL3gKx36jC> |                      |
+| Keyword | Source         | Type | URL                                           | Why we filter it out |
+|--------|----------------|------| --------------------------------------------- | -------------------- |
+|        |                |      |                                               |                      |
+| CAVIARDATA1  | External Drive | CCTV | <https://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/> |                      |
 
 ## 7. Additional Notes
 

@@ -9,9 +9,9 @@ os.environ['TF_CPP_MIN_VLOG_LEVEL'] = '3'
 class DetectorV2:
 
     dds_v2_classes = {
-        "road-markings": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        "persons": [11, 12],
-        "roadside-objects": [13, 14]
+        "actions": [0, 1, 2, 3, 4, 5, 6, 7],
+        "persons": [8, 9],
+        "roadside-objects": [10, 11]
     }
 
     def __init__(self, model_path='best.pt'):

@@ -19,7 +19,7 @@ max_area_thresh_gt_list = [0.04]
 max_area_thresh_mpeg_list = max_area_thresh_gt_list
 
 iou_thresh = 0.3
-relevant_classes = 'road-markings'
+relevant_classes = 'actions'
 
 def parse_stats(stats_path):
 	fname_to_size = {}

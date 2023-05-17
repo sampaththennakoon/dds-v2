@@ -8,7 +8,7 @@ import logging
 sys.path.append('../')
 from dds_utils import read_results_dict
 
-relevant_classes = 'road-markings'
+relevant_classes = 'actions'
 confidence_threshold = 0.5
 max_area_threshold = 0.04
 iou_threshold = 0.8
