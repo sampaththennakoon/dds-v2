@@ -5,10 +5,6 @@ channels:
 dependencies:
   - python=3.9.13
   - tensorflow
-  - torch
-  - torchvision
-  - torchaudio
-  - ultralytics
   - flask
   - munch
   - networkx
@@ -17,5 +13,9 @@ dependencies:
   - pip
   - pip:
     - opencv-contrib-python
- 
+    - torch
+    - torchvision
+    - torchaudio
+    - ultralytics
+
 
